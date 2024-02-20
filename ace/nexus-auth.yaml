@@ -1,14 +1,10 @@
 apiVersion: appconnect.ibm.com/v1beta1
 kind: Configuration
 metadata:
-  creationTimestamp: '2023-05-04T19:43:02Z'
-  generation: 1
   labels:
     app.kubernetes.io/instance: mars
   name: nexus-auth
   namespace: mars
-  resourceVersion: '235455684'
-  uid: 1e4916f1-f4ee-46c9-b110-72280e6861de
 spec:
   description: Stores bar auth
   secretName: nexus-auth-secret
