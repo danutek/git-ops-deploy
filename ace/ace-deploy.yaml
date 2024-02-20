@@ -2,7 +2,7 @@ apiVersion: appconnect.ibm.com/v1beta1
 kind: IntegrationServer
 metadata:
   name: mm
-  namespace: mars
+  namespace: ecsd
 spec:
   license:
     accept: true
