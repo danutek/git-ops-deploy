@@ -1,61 +1,24 @@
+apiVersion: appconnect.ibm.com/v1beta1
 kind: IntegrationServer
 metadata:
-  name: AceServer1
-  namespace: ace
+  name: mm
+  namespace: ecsd
 spec:
-  adminServerSecure: false
-  designerFlowsOperationMode: disabled
-  disableRoutes: true
-  env:
-  - name: env-var-name1
-    value: env-var-value1
   license:
     accept: true
-    license: L-KSBM-CCBJUS
-    use: AppConnectEnterpriseProduction
-  pod:
-    containers:
-      runtime:
-        image:
-        imagePullPolicy: Always
-        livenessProbe:
-          failureThreshold: 6
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 5
-        readinessProbe:
-          failureThreshold: 6
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 3
-        resources:
-          limits:
-            cpu: 1000m
-            ephemeral-storage: 20Gi
-            memory: 2048Mi
-          requests:
-            cpu: 125m
-            ephemeral-storage: 256Mi
-            memory: 512Mi
-        startupProbe:
-          failureThreshold: 120
-          initialDelaySeconds: 0
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-    imagePullSecrets:
-    - name: image-pull-secret-here
+    license: L-APEH-CJUCNR
+    use: CloudPakForIntegrationProduction
+  template:
+    spec:
+      containers:
+        - resources:
+            requests:
+              cpu: 300m
+              memory: 368Mi
+          name: runtime
+  logFormat: basic
+  barURL: 'http://upmc-nexusrepo-sonatype-nexus-service.nexus.svc.cluster.local:8081/repository/ibm-ace-bar-files/mm.bar'
+  configurations:
+    - nexus-auth
+  version: '12.0'
   replicas: 1
-  router:
-    timeout: 120s
-  service:
-    endpointType: https
-    ports:
-    - name: tcpin-1
-      port: 9175
-      protocol: TCP
-      targetPort: 9175
-    type: ClusterIP
-  tracing:
-    enabled: false
-  version: 12.0.3.0-r2
