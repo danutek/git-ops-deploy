@@ -4,7 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: mars
   name: nexus-auth
-  namespace: mars
+  namespace: ecsd
 spec:
   description: Stores bar auth
   secretName: nexus-auth-secret
